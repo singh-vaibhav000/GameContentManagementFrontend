@@ -86,7 +86,7 @@ A web application for managing game content, including characters, users, and au
 {
   "_id": "ObjectId",
   "email": "string",
-  "passwordHash": "string",
+  "password": "string",
   "roles": ["string"],
   "mustChangePassword": "boolean",
   "createdAt": "datetime",
