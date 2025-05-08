@@ -1,0 +1,97 @@
+<div class="character-form-container">
+  <h1>{{ isEditMode ? 'Edit Character' : 'Create New Character' }}</h1>
+
+  <form [formGroup]="characterForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="form-control"
+        [class.is-invalid]="characterForm.get('name')?.invalid && characterForm.get('name')?.touched"
+      />
+      <div class="invalid-feedback" *ngIf="characterForm.get('name')?.invalid && characterForm.get('name')?.touched">
+        Name is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        class="form-control"
+        rows="4"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="rarity">Rarity</label>
+      <select
+        id="rarity"
+        formControlName="rarity"
+        class="form-control"
+        [class.is-invalid]="characterForm.get('rarity')?.invalid && characterForm.get('rarity')?.touched"
+      >
+        <option value="Common">Common</option>
+        <option value="Rare">Rare</option>
+        <option value="Epic">Epic</option>
+      </select>
+      <div class="invalid-feedback" *ngIf="characterForm.get('rarity')?.invalid && characterForm.get('rarity')?.touched">
+        Rarity is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="upgradeLevel">Upgrade Level (1-5)</label>
+      <input
+        type="number"
+        id="upgradeLevel"
+        formControlName="upgradeLevel"
+        class="form-control"
+        min="1"
+        max="5"
+        [class.is-invalid]="characterForm.get('upgradeLevel')?.invalid && characterForm.get('upgradeLevel')?.touched"
+      />
+      <div class="invalid-feedback" *ngIf="characterForm.get('upgradeLevel')?.invalid && characterForm.get('upgradeLevel')?.touched">
+        Upgrade level must be between 1 and 5
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="sortOrder">Sort Order</label>
+      <input
+        type="number"
+        id="sortOrder"
+        formControlName="sortOrder"
+        class="form-control"
+        [class.is-invalid]="characterForm.get('sortOrder')?.invalid && characterForm.get('sortOrder')?.touched"
+      />
+      <div class="invalid-feedback" *ngIf="characterForm.get('sortOrder')?.invalid && characterForm.get('sortOrder')?.touched">
+        Sort order is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="imageUrl">Image URL</label>
+      <input
+        type="url"
+        id="imageUrl"
+        formControlName="imageUrl"
+        class="form-control"
+        [class.is-invalid]="characterForm.get('imageUrl')?.invalid && characterForm.get('imageUrl')?.touched"
+      />
+      <div class="invalid-feedback" *ngIf="characterForm.get('imageUrl')?.invalid && characterForm.get('imageUrl')?.touched">
+        Image URL is required
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" routerLink="/characters" class="btn btn-secondary">Cancel</button>
+      <button type="submit" class="btn btn-primary" [disabled]="characterForm.invalid">
+        {{ isEditMode ? 'Update' : 'Create' }}
+      </button>
+    </div>
+  </form>
+</div> 

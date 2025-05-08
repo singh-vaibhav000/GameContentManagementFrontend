@@ -1,0 +1,9 @@
+<nav class="navbar">
+  <a class="navbar-brand" routerLink="../characters">Game Content Manager</a>
+  <div class="navbar-links">
+    <a class="nav-link" routerLink="../characters" routerLinkActive="active">Characters</a>
+    <a *ngIf="hasAdminAccess"class="nav-link" routerLink="../users" routerLinkActive="active">Users</a>
+    <a *ngIf="hasAdminAccess" class="nav-link" routerLink="../audit-logs" routerLinkActive="active">Audit Logs</a>
+    <a class="nav-link logout" (click)="logout()">Logout</a>
+  </div>
+</nav>

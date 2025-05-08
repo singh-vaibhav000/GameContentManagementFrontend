@@ -1,0 +1,51 @@
+<div class="audit-log-container">
+  <h2>Audit Log</h2>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <div>
+    <div *ngIf="isLoading" class="loading-spinner">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>User</th>
+            <th>Action</th>
+            <th>Entity</th>
+            <th>Changes</th>
+            <th>IP Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let log of auditLogs">
+            <td>{{ formatDate(log.timestamp) }}</td>
+            <td>{{ log.userId }}</td>
+            <td>{{ log.action }}</td>
+            <td>{{ log.entityType }} ({{ log.entityId }})</td>
+            <td>
+              <div class="changes-container">
+                <div class="old-value">
+                  <strong>Old:</strong>
+                  <pre>{{ formatJson(log.oldValue) }}</pre>
+                </div>
+                <div class="new-value">
+                  <strong>New:</strong>
+                  <pre>{{ formatJson(log.newValue) }}</pre>
+                </div>
+              </div>
+            </td>
+            <td>{{ log.ipAddress }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,47 @@
+<div class="character-list-container">
+  <div class="header">
+    <h1>Game Characters</h1>
+    <div class="search-box">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (input)="searchCharacters()"
+        placeholder="Search by name or description..."
+      >
+    </div>
+  </div>
+  <button 
+      *ngIf="canCreateCharacter"
+      (click)="onCreateCharacter()" 
+      class="create-button"
+    >
+      Create Character
+    </button>
+
+  <div *ngIf="isLoading" class="loading">
+    Loading characters...
+  </div>
+
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!isLoading && !error" class="characters-grid">
+    <div *ngFor="let character of filteredCharacters" class="character-card" (click)="onCharacterClick(character)">
+      <div class="character-image">
+        <img [src]="character.imageUrl || 'assets/default-character.png'" [alt]="character.name">
+      </div>
+      <div class="character-info">
+        <h2>{{ character.name }}</h2>
+        <div class="character-details">
+          <span class="rarity" [ngClass]="character.rarity.toLowerCase()">{{ character.rarity }}</span>
+          <div class="stars">
+            <span *ngFor="let star of [].constructor(character.upgradeLevel)" class="star">★</span>
+            <span *ngFor="let star of [].constructor(5 - character.upgradeLevel)" class="star empty">☆</span>
+          </div>
+          <span class="sort-order">#{{ character.sortOrder }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,59 @@
+<div class="character-detail-container">
+  <div *ngIf="isLoading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">
+    {{ error }}
+  </div>
+
+  <div *ngIf="character" class="character-header">
+    <div class="character-image-container">
+      <img [src]="character.imageUrl" [alt]="character.name" class="character-image">
+    </div>
+    
+    <div class="character-info">
+      <h2 class="character-name">{{character.name}}</h2>
+      
+      <div class="character-description">
+        <label>Description</label>
+        <p *ngIf="!isEditing">{{character.description}}</p>
+        <textarea *ngIf="isEditing" [(ngModel)]="character.description" rows="4" class="form-control"></textarea>
+      </div>
+
+      <div class="character-stats">
+        <div class="stat-item">
+          <div class="stat-label">Rarity</div>
+          <div *ngIf="!isEditing" class="stat-value">{{character.rarity}}</div>
+          <select *ngIf="isEditing" [(ngModel)]="character.rarity" class="form-control">
+            <option value="Common">Common</option>
+            <option value="Rare">Rare</option>
+            <option value="Epic">Epic</option>
+          </select>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-label">Upgrade Level</div>
+          <div *ngIf="!isEditing" class="stat-value">{{character.upgradeLevel}}</div>
+          <input *ngIf="isEditing" type="number" [(ngModel)]="character.upgradeLevel" min="1" max="5" class="form-control">
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-label">Sort Order</div>
+          <div *ngIf="!isEditing" class="stat-value">{{character.sortOrder}}</div>
+          <input *ngIf="isEditing" type="number" [(ngModel)]="character.sortOrder" class="form-control">
+        </div>
+      </div>
+
+      <div class="button-group" *ngIf="!hasReaderAccess">
+        <button (click)="toggleEdit()" class="btn btn-primary">
+          {{isEditing ? 'Cancel' : 'Edit'}}
+        </button>
+        <button (click)="deleteCharacter()" class="btn btn-danger">Delete</button>
+        <button *ngIf="isEditing" (click)="saveCharacter()" class="btn btn-success">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div> 
