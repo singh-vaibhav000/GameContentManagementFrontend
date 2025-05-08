@@ -47,16 +47,17 @@ export class ChangePasswordModalComponent {
       }
 
       const headers = new HttpHeaders({
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
+        'authorization': `Bearer ${token}`,
+        'content-Type': 'application/json'
       });
 
-      this.http.post('http://localhost:5120/api/auth/change-password', {
-        currentPassword: this.changePasswordForm.get('currentPassword')?.value,
-        newPassword: this.changePasswordForm.get('newPassword')?.value
-      }, { 
-        headers: headers,
-        withCredentials: true 
+      const payload = {
+        CurrentPassword: this.changePasswordForm.get('currentPassword')?.value,
+        NewPassword: this.changePasswordForm.get('newPassword')?.value
+      };
+    
+      this.http.post('https://gamecontentmanagerbackend-1.onrender.com/api/auth/change-password', payload, {
+        headers: headers
       }).subscribe({
         next: () => {
           this.isLoading = false;

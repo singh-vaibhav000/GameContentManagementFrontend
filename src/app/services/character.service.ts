@@ -7,7 +7,7 @@ import { GameCharacter } from '../models/game-character';
   providedIn: 'root'
 })
 export class CharacterService {
-  private apiUrl = 'http://localhost:5120/api/gamecharacter';
+  private apiUrl = 'https://gamecontentmanagerbackend-1.onrender.com/api/gamecharacter';
 
   constructor(private http: HttpClient) {}
 

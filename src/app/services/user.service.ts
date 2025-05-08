@@ -11,7 +11,7 @@ export interface ChangePasswordRequest {
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:5120/api/user';
+  private apiUrl = 'https://gamecontentmanagerbackend-1.onrender.com/api/user';
 
   constructor(private http: HttpClient) {}
 

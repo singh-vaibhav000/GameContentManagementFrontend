@@ -7,7 +7,7 @@ import { AuditLog, AuditLogFilter } from '../models/audit-log';
   providedIn: 'root'
 })
 export class AuditLogService {
-  private apiUrl = 'http://localhost:5120/api/AuditLog';
+  private apiUrl = 'https://gamecontentmanagerbackend-1.onrender.com/api/AuditLog';
 
   constructor(private http: HttpClient) { }
 

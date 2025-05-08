@@ -25,7 +25,7 @@ interface TokenPayload {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5120/api/auth';
+  private apiUrl = 'https://gamecontentmanagerbackend-1.onrender.com/api/auth';
   private tokenExpiryCheckInterval: any;
   private readonly EXPIRY_WARNING_TIME = 60000; // 1 minute in milliseconds
   public tokenExpiryWarning = new Subject<void>();
